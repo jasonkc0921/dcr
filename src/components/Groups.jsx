@@ -25,19 +25,6 @@ const Groups = ({ fadeInUp }) => {
       color: "from-[#006072] to-[#004d5c]"
     },
     {
-      name: "Natural Life",
-      tagline: "Live Happy",
-      desc: "Sole Distributor of Natural Life products in Malaysia. Bringing back smiles with cute, comfy clothes and perfect gifts for all ages.",
-      stats: [
-        { label: "Product Selections", value: "3,000+" }
-      ],
-      videoSrc: "/videos/NaturalLife.mp4",
-      // Add your thumbnail image path here
-      thumbnail: "/natural-life-thumb.jpg",
-      color: "from-[#4A7729] to-[#3d6321]",
-      reverse: true
-    },
-    {
       name: "Gift Voucher",
       tagline: "Buy, Send & Redeem",
       desc: "Shop from hundreds of retailer gift vouchers—promo, paper, or e-vouchers delivered to your doorstep. Safe, easy, and convenient.",
@@ -48,7 +35,8 @@ const Groups = ({ fadeInUp }) => {
       videoSrc: "/videos/GiftVoucher.mp4",
       // Add your thumbnail image path here
       thumbnail: "/justvoucher_thumbnail.jpg",
-      color: "from-[#1a2b2e] to-black"
+      color: "from-[#1a2b2e] to-black",
+      reverse: true
     }
   ];
 
