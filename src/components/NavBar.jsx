@@ -1,14 +1,15 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Helper to handle hover states
   const handleMouseEnter = (menu) => setOpenDropdown(menu);
   const handleMouseLeave = () => setOpenDropdown(null);
+  const toggleMobileMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#006072]/5">
@@ -25,17 +26,25 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* --- NAVIGATION LINKS --- */}
+        {/* --- MOBILE HAMBURGER BUTTON --- */}
+        <button 
+          className="md:hidden p-2 text-[#006072]" 
+          onClick={toggleMobileMenu}
+          aria-label="Toggle Menu"
+        >
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        {/* --- DESKTOP NAVIGATION --- */}
         <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-[#4e5d5f]">
           <a href="/#solutions" className="hover:text-[#006072] transition">Solutions</a>
           
-          {/* 1. LOYALTY CAMPAIGN DROPDOWN */}
           <div 
             className="relative group py-6"
             onMouseEnter={() => handleMouseEnter('loyalty')}
             onMouseLeave={handleMouseLeave}
           >
-            <button className="flex items-center gap-1 hover:text-[#006072] transition tracking-wider font-semibold]">
+            <button className="flex items-center gap-1 hover:text-[#006072] transition tracking-wider font-semibold">
               Loyalty Campaign <ChevronDown size={14} className={`transition-transform ${openDropdown === 'loyalty' ? 'rotate-180' : ''}`} />
             </button>
             
@@ -51,7 +60,6 @@ const Navbar = () => {
 
           <Link href="/about" className="hover:text-[#006072] transition">About Us</Link>
 
-          {/* 2. NEWS DROPDOWN (Podcast + Featured News) */}
           <div 
             className="relative group py-6"
             onMouseEnter={() => handleMouseEnter('news')}
@@ -76,17 +84,44 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
+
+      {/* --- MOBILE MENU OVERLAY --- */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-8 flex flex-col gap-6 animate-in slide-in-from-top duration-300">
+          <Link href="/#solutions" onClick={toggleMobileMenu} className="text-lg font-bold text-[#4e5d5f]">Solutions</Link>
+          
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-black uppercase tracking-widest text-gray-400">Loyalty Campaigns</p>
+            <DropdownLink href="https://unirm.my/Member/Main.aspx">UOB Bank</DropdownLink>
+            <DropdownLink href="https://pbrewards.my/Member/Main.aspx">Public Bank</DropdownLink>
+            <DropdownLink href="https://bonuslink.com.my/products">Bonuslink</DropdownLink>
+          </div>
+
+          <Link href="/about" onClick={toggleMobileMenu} className="text-lg font-bold text-[#4e5d5f]">About Us</Link>
+          
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-black uppercase tracking-widest text-gray-400">News</p>
+            <Link href="/podcast" onClick={toggleMobileMenu} className="text-sm font-semibold">Podcast</Link>
+            <Link href="/featurednews" onClick={toggleMobileMenu} className="text-sm font-semibold">Featured News</Link>
+          </div>
+
+          <Link href="/#footer" onClick={toggleMobileMenu}>
+            <button className="w-full bg-[#006072] text-white py-4 rounded-xl font-bold shadow-md">
+              Contact Us
+            </button>
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };
 
-// Reusable Dropdown Link Component
 const DropdownLink = ({ href, children }) => (
   <a 
     href={href} 
     target="_blank" 
     rel="noopener noreferrer"
-    className="block px-4 py-3 rounded-xl hover:bg-[#006072]/5 hover:text-[#006072] transition-colors text-xs font-bold"
+    className="block py-2 text-sm font-semibold text-[#006072] md:text-xs md:font-bold md:px-4 md:py-3 md:rounded-xl md:hover:bg-[#006072]/5 md:transition-colors"
   >
     {children}
   </a>
