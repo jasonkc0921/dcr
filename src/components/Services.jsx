@@ -25,7 +25,7 @@ const Services = ({ fadeInUp, staggerContainer, onServiceClick }) => {
             <div className="relative z-10">
               <Users className="w-12 h-12 text-[#006072] mb-8" />
               <h3 className="text-3xl font-black mb-6 text-[#006072]">Rewards & Loyalty Programs</h3>
-              <p className="text-[#5a6b6d] text-lg leading-relaxed max-w-md">Comprehensive management from point-earning mechanics to member fulfilment.</p>
+              <p className="text-[#5a6b6d] text-lg leading-relaxed max-w-md">End-to-end rewards, fulfilment, and loyalty infrastructure trusted by Malaysia’s leading financial institutions and large organisations in Malaysia.</p>
               <div className="mt-8 flex items-center gap-2 text-[#006072] font-black group-hover:gap-4 transition-all uppercase">
                 Explore Features <ChevronRight className="w-5 h-5" />
               </div>
@@ -40,8 +40,8 @@ const Services = ({ fadeInUp, staggerContainer, onServiceClick }) => {
             className="md:col-span-5 p-12 bg-[#1a2b2e] text-white rounded-[3rem] shadow-xl relative group cursor-pointer overflow-hidden"
           >
             <Gift className="w-12 h-12 text-[#4A7729] mb-8" />
-            <h3 className="text-2xl font-bold mb-4">Redemption & Fulfillments</h3>
-            <p className="text-gray-400 leading-relaxed">Efficient order processing and doorstep gift delivery services.</p>
+            <h3 className="text-2xl font-bold mb-4">Gift Voucher</h3>
+            <p className="text-gray-400 leading-relaxed">A flexible, popular reward choice in Malaysia, perfect for incentives, gifting, and instant gratification.</p>
             <div className="mt-8 flex items-center gap-2 text-[#4A7729] font-black uppercase">
               View Details <ChevronRight className="w-5 h-5" />
             </div>
@@ -54,10 +54,10 @@ const Services = ({ fadeInUp, staggerContainer, onServiceClick }) => {
             className="md:col-span-5 p-12 bg-white rounded-[3rem] border-2 border-[#F4F8F9] group cursor-pointer hover:border-[#006072]/20 transition-all"
           >
             <Box className="w-12 h-12 text-[#4A7729] mb-8" />
-            <h3 className="text-2xl font-bold mb-4 text-[#1a2b2e]">Inventory & Warehousing</h3>
-            <p className="text-[#5a6b6d]">Secure storage with real-time tracking and just-in-time management.</p>
+            <h3 className="text-2xl font-bold mb-4 text-[#1a2b2e]">Warehousing & Fulfillment</h3>
+            <p className="text-[#5a6b6d]">Trusted warehousing and nationwide fulfilment backed by 20 years of industry experience and strong brand partnerships.</p>
             <div className="mt-8 flex items-center gap-2 text-[#006072] font-black uppercase">
-              View Categories <ChevronRight className="w-5 h-5" />
+              Our Strength <ChevronRight className="w-5 h-5" />
             </div>
           </motion.div>
 
