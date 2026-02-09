@@ -54,7 +54,7 @@ const Navbar = () => {
                 <DropdownLink href="https://pbrewards.my/Member/Main.aspx">PUBLIC BANK REDEMPTION</DropdownLink>
                 <DropdownLink href="https://bonuslink.com.my/products">BONUSLINK REDEMPTION</DropdownLink>
                 <DropdownLink href="https://dreamshop.com.my/promo/boostup">BOOST E-WALLET REDEMPTION</DropdownLink>
-                <DropdownLink href="https://www.touchngo.com.my/consumer/ewallet-features/gorewards">TNG eWallet GOrewards REDEMPTION</DropdownLink>
+                <DropdownLink href="https://visit.tngdigital.com.my/ezbeli">TNG eWallet GOrewards REDEMPTION</DropdownLink>
               </div>
             )}
           </div>
@@ -97,7 +97,7 @@ const Navbar = () => {
             <DropdownLink href="https://pbrewards.my/Member/Main.aspx">Public Bank</DropdownLink>
             <DropdownLink href="https://bonuslink.com.my/products">Bonuslink</DropdownLink>
             <DropdownLink href="https://dreamshop.com.my/promo/boostup">BOOST E-WALLET REDEMPTION</DropdownLink>
-            <DropdownLink href="https://www.touchngo.com.my/consumer/ewallet-features/gorewards/">TNG eWallet GOrewards REDEMPTION</DropdownLink>
+            <DropdownLink href="https://visit.tngdigital.com.my/ezbeli">TNG eWallet GOrewards REDEMPTION</DropdownLink>
           </div>
 
           <Link href="/about" onClick={toggleMobileMenu} className="text-lg font-bold text-[#4e5d5f]">About Us</Link>
