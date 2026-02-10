@@ -71,7 +71,7 @@ const Services = ({ fadeInUp, staggerContainer, onServiceClick }) => {
             <h3 className="text-3xl font-black mb-6 tracking-tight">0% Easy Payment Plan</h3>
             <p className="text-white/70 text-lg leading-relaxed max-w-sm mb-6">Flexi-payment solutions supporting 11 major local credit card banks.</p>
             <div className="bg-white/10 p-4 rounded-2xl border border-white/10 inline-block font-bold uppercase text-xs tracking-wider">
-              Click for bank list & info
+              Click for more info
             </div>
           </motion.div>
         </motion.div>
