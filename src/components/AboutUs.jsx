@@ -11,8 +11,6 @@ const AboutUs = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
   };
 
-  // 1. Updated Partners Array with image paths
-  // Ensure these images are in your public/partners/ folder
   const partners = [
     { name: "OSIM", logo: "/partners/OSIM-Logo_H.png" },
     { name: "Sony", logo: "/partners/sony-logo.png" },
@@ -46,25 +44,32 @@ const AboutUs = () => {
     { name: "Medklinn", logo: "/partners/MedKlinn-Logo.png" },
     { name: "Oasis-Swiss", logo: "/partners/oasis-swiss-logo300dpi-1.png" },
     { name: "Ogawa", logo: "/partners/ogawa-logo.png" }
-    // ... add the rest of your partner logos here
   ];
 
   return (
     <div className="min-h-screen bg-white text-[#1a2b2e]">
       <Navbar />
 
-      {/* --- HERO SECTION --- */}
-      <section className="pt-40 pb-20 bg-[#F4F8F9]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      {/* --- HERO SECTION WITH TEAM BACKGROUND --- */}
+      <section className="relative pt-48 pb-32 overflow-hidden flex items-center justify-center">
+        {/* Background Image Layer */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{ backgroundImage: "url('/team_pic.jpeg')" }}
+        />
+        {/* Gradient Overlay for Readability */}
+        <div className="absolute inset-0 z-1 bg-gradient-to-b from-white/60 via-transparent to-white/60" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.h1 
             initial="hidden" animate="visible" variants={fadeInUp}
-            className="text-5xl md:text-7xl font-black tracking-tighter text-[#006072] mb-6"
+            className="text-5xl md:text-8xl font-black tracking-tighter text-[#006072] mb-6 drop-shadow-sm"
           >
             Rediscover your <br />customers with us
           </motion.h1>
           <motion.p 
             initial="hidden" animate="visible" variants={fadeInUp}
-            className="text-lg text-[#5a6b6d] max-w-2xl mx-auto font-medium"
+            className="text-xl text-[#1a2b2e] max-w-2xl mx-auto font-bold bg-white/40 backdrop-blur-sm py-2 rounded-lg"
           >
             DCR – The Industry Leader in Marketing & Loyalty Programs since 2006.
           </motion.p>
@@ -75,12 +80,12 @@ const AboutUs = () => {
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            <h2 className="text-3xl font-black mb-6 text-[#006072]">The Industry Leader</h2>
-            <p className="text-[#5a6b6d] leading-relaxed mb-6">
+            <h2 className="text-4xl font-black mb-6 text-[#006072]">The Industry Leader</h2>
+            <p className="text-[#5a6b6d] text-lg leading-relaxed mb-6">
               DCR Marketing Sdn Bhd was established as a premier provider of customer loyalty and marketing programs in Malaysia. 
               We design, manage, advise and partner extensively in marketing programs for major corporations.
             </p>
-            <p className="text-[#5a6b6d] leading-relaxed mb-8">
+            <p className="text-[#5a6b6d] text-lg leading-relaxed mb-8">
               Our strong alliance with various industry players and close relations to suppliers enable us to offer 
               highly competitive services in creating dynamic Marketing and Loyalty solutions.
             </p>
@@ -90,7 +95,7 @@ const AboutUs = () => {
                 "Inventory Control", "Warehousing Services", 
                 "Mail Order", "Partnership Alliances"
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm font-bold text-[#1a2b2e]">
+                <li key={item} className="flex items-center gap-2 text-md font-bold text-[#1a2b2e]">
                   <CheckCircle2 className="w-5 h-5 text-[#4A7729]" /> {item}
                 </li>
               ))}
@@ -101,30 +106,20 @@ const AboutUs = () => {
             initial={{ opacity: 0, x: 20 }} 
             whileInView={{ opacity: 1, x: 0 }} 
             viewport={{ once: true }}
-            className="relative flex flex-col"
+            className="relative p-10 bg-[#006072] rounded-[3rem] text-white shadow-2xl"
           >
-            <div className="w-full h-[600px] rounded-t-[3rem] overflow-hidden bg-gray-100 mb-[-2rem] relative z-0 border-x border-t border-gray-200">
-               <img 
-                 src="/rosalie_lin.jpg" 
-                 alt="Rosalie Lin - Founder"
-                 className="w-full h-full object-cover object-top"
-               />
-            </div>
-
-            <div className="bg-[#006072] rounded-b-[3rem] rounded-tl-[3rem] p-10 text-white relative z-10 shadow-2xl">
-              <h3 className="text-2xl font-bold mb-4 italic leading-tight">
-                "Working with world's leading partners to create value."
-              </h3>
-              <p className="text-[#FFA500] font-black uppercase tracking-widest text-xs">
-                — Rosalie Lin, Founder
-              </p>
-              <Award className="absolute -bottom-8 -right-8 w-40 h-40 opacity-10" />
-            </div>
+            <Award className="w-16 h-16 text-[#4A7729] mb-6" />
+            <h3 className="text-3xl font-bold mb-6 leading-tight">
+              Our strong alliance with various industry players enable us to offer highly competitive services.
+            </h3>
+            <p className="text-white/80 leading-relaxed">
+              By leveraging our established networks and nearly two decades of expertise, we provide a one-stop marketing solution from curation to execution.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* --- 2. UPDATED AUTO-SCROLLING LOGO BAR --- */}
+      {/* --- AUTO-SCROLLING LOGO BAR --- */}
       <section className="py-20 border-y border-gray-100 bg-white overflow-hidden">
         <div className="mb-12 text-center">
           <h2 className="text-sm font-black tracking-[0.3em] uppercase text-[#8a9b9d]">
@@ -142,16 +137,15 @@ const AboutUs = () => {
               repeat: Infinity 
             }}
           >
-            {/* Loop through logos twice for seamless scrolling */}
             {[...partners, ...partners].map((partner, index) => (
               <div 
                 key={index} 
-                className="flex-shrink-0 w-32 md:w-40 h-20 relative  hover:grayscale-0 transition-all duration-500 flex items-center justify-center"
+                className="flex-shrink-0 w-32 md:w-40 h-20 relative flex items-center justify-center hover:grayscale-0 transition-all duration-500"
               >
                 <img 
                   src={partner.logo} 
                   alt={partner.name}
-                  className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity"
+                  className="max-w-full max-h-full object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
               </div>
             ))}
