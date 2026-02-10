@@ -70,7 +70,7 @@ const Footer = () => {
           </div>
 
           {/* --- CONTACT FORM --- */}
-          <div className="bg-white/5 p-8 md:p-12 rounded-[2.5rem] border border-white/10">
+{/*           <div className="bg-white/5 p-8 md:p-12 rounded-[2.5rem] border border-white/10">
             <h4 className="text-2xl font-bold mb-2">Feel free to call or write anytime</h4>
             <p className="text-gray-400 text-sm mb-8">We usually respond within 24 business hours.</p>
             
@@ -90,7 +90,7 @@ const Footer = () => {
                 <Send className="w-4 h-4" /> Submit
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
 
         {/* --- BOTTOM BAR --- */}
