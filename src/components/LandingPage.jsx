@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, Globe, Layers, CreditCard, Zap, CheckCircle2, 
   MousePointer2, Gift, Search, Lock, Clock, Truck, Users,
-  ShieldCheck, Handshake, TrendingUp, Settings, BarChart3, Box
+  ShieldCheck, Handshake, TrendingUp, Settings, BarChart3, Box,
+  Target, Rocket, ShieldAlert, LineChart, BadgeCheck
 } from 'lucide-react';
 
 // Import sub-components
@@ -70,10 +71,14 @@ const LandingPage = () => {
       title: "0% Easy Payment Plan",
       color: "bg-gradient-to-r from-[#006072] to-[#4A7729]",
       features: [
-        { icon: <Zap className="w-5 h-5" />, title: "0% Interest", desc: "Enjoy up to 60 affordable monthly instalments (subject to card availability)." },
-        { icon: <CreditCard className="w-5 h-5" />, title: "Single Terminal", desc: "Hassle-free. Accept up to 11 major local credit card banks." },
-        { icon: <Users className="w-5 h-5" />, title: "Everyone Wins", desc: "Secures better cash flow for merchants while customers benefit from flexi-instalments." },
-        { icon: <Gift className="w-5 h-5" />, title: "Earn Points", desc: "A quick and easy way to secure customer loyalty through point-earning rewards." }
+        { icon: <TrendingUp className="w-5 h-5" />, title: "Higher Order Value", desc: "Customers upgrade to premium options when instalment plans make it affordable." },
+        { icon: <Target className="w-5 h-5" />, title: "Increased Conversion", desc: "Turn browsers into buyers—instalments close the deal when customers are on the fence." },
+        { icon: <Globe className="w-5 h-5" />, title: "Massive Market Reach", desc: "Access 10+ million credit cards across 11 partner banks in Malaysia." },
+        { icon: <ShieldAlert className="w-5 h-5" />, title: "Zero Payment Risk", desc: "Receive full settlement upfront (minus transaction fees)—no chasing payments." },
+        { icon: <Rocket className="w-5 h-5" />, title: "Marketing Amplification", desc: "Featured in DreamShop and partner bank campaigns for maximum visibility." },
+        { icon: <LineChart className="w-5 h-5" />, title: "Weekly Auto-Settlement", desc: "Thursday cutoff, Monday payment—consistent, predictable cash flow." },
+        { icon: <BadgeCheck className="w-5 h-5" />, title: "Competitive Fees", desc: "Transaction fees vary by bank and tenure—affordable and transparent." },
+        { icon: <Zap className="w-5 h-5" />, title: "Fast Activation", desc: "Go live in 7-10 working days (subject to approval)—start selling sooner." }
       ],
       buttons: [{ label: "Enquire About EPP", primary: true }]
     }
@@ -103,7 +108,7 @@ const LandingPage = () => {
               initial={{ scale: 0.8, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0, transition: { type: "spring", damping: 25, stiffness: 300 } }}
               exit={{ scale: 0.8, opacity: 0, y: 50 }}
-              className="relative w-full max-w-2xl bg-white rounded-[2.5rem] overflow-hidden shadow-2xl"
+              className="relative w-full max-w-3xl bg-white rounded-[2.5rem] overflow-hidden shadow-2xl"
             >
               <div className={`${serviceDetails[activeModal].color} p-8 text-white flex justify-between items-center`}>
                 <h3 className="text-2xl font-black tracking-tight">{serviceDetails[activeModal].title}</h3>
@@ -111,7 +116,9 @@ const LandingPage = () => {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              {/* Note: max-w-3xl used above and overflow-y-auto added below for the longer EPP list */}
+              <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto">
                 {serviceDetails[activeModal].features.map((f, i) => (
                   <div key={i} className="flex gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100 hover:border-[#006072]/20 transition-all">
                     <div className="text-[#006072] shrink-0">{f.icon}</div>

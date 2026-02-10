@@ -13,13 +13,13 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#006072]/5">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-25 flex items-center justify-between">
         
         {/* --- LOGO --- */}
         <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition">
-          <div className="w-20 h-10 bg-gradient-to-br from-[#006072] to-[#4A7729] rounded-xl flex items-center justify-center shadow-lg shadow-[#006072]/20 overflow-hidden">
+          <div className="w-20 h-20 bg-gradient-to-br from-[#006072] to-[#4A7729] rounded-xl flex items-center justify-center shadow-lg shadow-[#006072]/20 overflow-hidden">
             <img 
-              src="/dcr_logo.jpg" 
+              src="/dcr_logo.png" 
               alt="DCR Logo"
               className="w-full h-full object-cover object-top"
             />
