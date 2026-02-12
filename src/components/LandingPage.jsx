@@ -76,7 +76,7 @@ const LandingPage = () => {
         { icon: <BadgeCheck className="w-5 h-5" />, title: "Competitive Fees", desc: "Transaction fees vary by bank and tenure—affordable and transparent." },
         { icon: <Zap className="w-5 h-5" />, title: "Fast Activation", desc: "Go live in 7-10 working days (subject to approval)—start selling sooner." }
       ],
-      buttons: [{ label: "Start Selling on DreamShop", primary: true, intention: "dreamshop-merchant" }]
+      buttons: [{ label: "Start Selling on DreamShop", primary: true, intention: "dreamshop-seller" }]
     }
   };
 

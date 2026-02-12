@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation'; // Import to read URL parameters
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
 
@@ -15,10 +15,9 @@ const SignUpFormContent = () => {
     message: ''
   });
 
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
   const [emailError, setEmailError] = useState('');
 
-  // Automatically pre-fill the dropdown based on URL params
   useEffect(() => {
     const intentionFromUrl = searchParams.get('intention');
     if (intentionFromUrl) {
@@ -43,18 +42,39 @@ const SignUpFormContent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (!validateEmail(formData.email)) {
       setEmailError('A valid email is required.');
       return;
     }
 
     setStatus('loading');
-    
-    // Simulate API Call
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ companyName: '', name: '', contactNumber: '', email: '', intention: '', message: '' });
-    }, 1500);
+
+    try {
+      // Triggering HTTP Request to n8n Webhook
+      const response = await fetch('https://dcrmarketing.app.n8n.cloud/webhook-test/b0f7459a-3065-4cfc-b39b-666a473f31da', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          submittedAt: new Date().toISOString(),
+          source: 'Website SignUp Form'
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ companyName: '', name: '', contactNumber: '', email: '', intention: '', message: '' });
+      } else {
+        throw new Error('Failed to submit');
+      }
+    } catch (error) {
+      console.error('Submission Error:', error);
+      setStatus('error');
+      alert('There was an error sending your inquiry. Please try again later.');
+    }
   };
 
   if (status === 'success') {
@@ -84,32 +104,27 @@ const SignUpFormContent = () => {
           onSubmit={handleSubmit}
           className="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {/* Company Name */}
           <div className="md:col-span-2">
             <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Company Name *</label>
             <input required type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-[#006072] outline-none transition-all" placeholder="e.g. DCR Marketing Sdn Bhd" />
           </div>
 
-          {/* Name */}
           <div>
             <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Full Name *</label>
             <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-[#006072] outline-none transition-all" placeholder="Enter your name" />
           </div>
 
-          {/* Contact Number */}
           <div>
             <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Contact Number *</label>
             <input required type="tel" name="contactNumber" value={formData.contactNumber} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-[#006072] outline-none transition-all" placeholder="+6012-345 6789" />
           </div>
 
-          {/* Email Address */}
           <div className="md:col-span-2">
             <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Email Address *</label>
             <input required type="email" name="email" value={formData.email} onChange={handleChange} className={`w-full px-6 py-4 bg-slate-50 border ${emailError ? 'border-red-400' : 'border-slate-100'} rounded-2xl focus:ring-2 focus:ring-[#006072] outline-none transition-all`} placeholder="you@company.com" />
             {emailError && <p className="mt-2 text-xs text-red-500 flex items-center gap-1"><AlertCircle size={12}/> {emailError}</p>}
           </div>
 
-          {/* Intention Dropdown */}
           <div className="md:col-span-2">
             <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">How can we help? *</label>
             <div className="relative">
@@ -125,7 +140,7 @@ const SignUpFormContent = () => {
                 <option value="loyalty-supplier">Join as Loyalty Program Supplier</option>
                 <option value="voucher-solutions">Explore Gift Voucher Solutions</option>
                 <option value="fulfillment-services">Enquire About Fulfillment Services</option>
-                <option value="dreamshop-merchant">Sign Up As DreamShop Merchant</option>
+                <option value="dreamshop-seller">Sign Up As DreamShop Seller</option>
               </select>
               <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,20 +150,22 @@ const SignUpFormContent = () => {
             </div>
           </div>
 
-          {/* Message */}
           <div className="md:col-span-2">
             <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Message *</label>
             <textarea required name="message" rows="4" value={formData.message} onChange={handleChange} className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-[#006072] outline-none transition-all resize-none" placeholder="Tell us more about your requirements..."></textarea>
           </div>
 
-          {/* Submit Button */}
           <div className="md:col-span-2 mt-4">
             <button 
               disabled={status === 'loading'}
               type="submit" 
               className="w-full bg-[#006072] text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-[#004d5c] hover:shadow-xl transition-all disabled:opacity-50 flex items-center justify-center gap-3 active:scale-[0.98]"
             >
-              {status === 'loading' ? 'Processing...' : <>Send Inquiry <Send size={18}/></>}
+              {status === 'loading' ? (
+                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                <>Send Inquiry <Send size={18}/></>
+              )}
             </button>
           </div>
         </motion.form>
@@ -157,7 +174,6 @@ const SignUpFormContent = () => {
   );
 };
 
-// Main Export with Suspense Boundary for SearchParams
 const SignUp = () => {
   return (
     <Suspense fallback={
