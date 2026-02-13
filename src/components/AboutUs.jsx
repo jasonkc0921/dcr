@@ -34,7 +34,7 @@ const AboutUs = () => {
     { name: "Faber", logo: "/partners/Faber-logo-Living-the-Italian-Style.png" },
     { name: "Fiorucci", logo: "/partners/Fiorucci-font-logo-copy.png" },
     { name: "Gardener", logo: "/partners/Gardener-logo.png" },
-    { name: "Huawei", logo: "/partners/huawei-logo.png" },
+    { name: "Huawei", logo: "/partners/huawei-logo.jpg" },
     { name: "Imaxx", logo: "/partners/IMAXX-Logo.png" },
     { name: "Jabra", logo: "/partners/Jabra-Logo.png" },
     { name: "Kenwood", logo: "/partners/kenwood-logo.png" },
