@@ -10,6 +10,13 @@ const Groups = ({ fadeInUp }) => {
     setPlaying((prev) => ({ ...prev, [name]: true }));
   };
 
+  // 1. Function to open links in a new tab (SEO & Performance Optimized)
+  const openInNewTab = (url) => {
+    if (typeof window !== 'undefined') {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   const businessGroups = [
     {
       name: "Dreamshop",
@@ -20,9 +27,9 @@ const Groups = ({ fadeInUp }) => {
         { label: "Points Awarded Manually", value: "17.23%" }
       ],
       videoSrc: "/videos/DCR_Presentation_Final.mp4",
-      // Add your thumbnail image path here
       thumbnail: "/dreamshop-thumb.jpg", 
-      color: "from-[#006072] to-[#004d5c]"
+      color: "from-[#006072] to-[#004d5c]",
+      href: "https://dreamshop.com.my/?utm_source=DCR%20WEBSITE&utm_medium=DCR%20WEBSITE&utm_campaign=DCR%20WEBSITE" // Added URL
     },
     {
       name: "Gift Voucher",
@@ -33,10 +40,10 @@ const Groups = ({ fadeInUp }) => {
         { label: "Niche Categories", value: "7" }
       ],
       videoSrc: "/videos/GiftVoucher.mp4",
-      // Add your thumbnail image path here
       thumbnail: "/justvoucher_thumbnail.jpg",
       color: "from-[#1a2b2e] to-black",
-      reverse: true
+      reverse: true,
+      href: "https://giftvoucher.my/?utm_source=DCR%20WEBSITE&utm_medium=DCR%20WEBSITE&utm_campaign=DCR%20WEBSITE" // Added URL
     }
   ];
 
@@ -61,8 +68,6 @@ const Groups = ({ fadeInUp }) => {
               {/* VIDEO SIDE */}
               <div className="flex-1 w-full relative group">
                 <div className="aspect-video bg-black rounded-[2.5rem] overflow-hidden shadow-2xl relative border-8 border-white transition-all">
-                  
-                  {/* Custom Play Button Overlay (Visible only before play) */}
                   {!playing[group.name] && (
                     <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20 pointer-events-none group-hover:bg-black/40 transition-all">
                       <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-2xl transform group-hover:scale-110 transition-transform">
@@ -76,7 +81,6 @@ const Groups = ({ fadeInUp }) => {
                     playsInline
                     preload="metadata"
                     onPlay={() => handlePlay(group.name)}
-                    // This attribute shows the thumbnail image
                     poster={group.thumbnail} 
                     className="w-full h-full object-cover"
                   >
@@ -87,7 +91,7 @@ const Groups = ({ fadeInUp }) => {
               </div>
 
               {/* CONTENT SIDE */}
-              <div className="flex-1 space-y-8">
+              <div className="flex-1 space-y-8 text-left">
                 <div>
                   <h3 className="text-5xl font-black text-[#006072] mb-2 tracking-tighter uppercase">{group.name}</h3>
                   <p className="text-[#4A7729] font-bold tracking-widest uppercase text-xs">{group.tagline}</p>
@@ -104,7 +108,11 @@ const Groups = ({ fadeInUp }) => {
                   ))}
                 </div>
 
-                <button className={`px-8 py-4 bg-gradient-to-r ${group.color} text-white rounded-2xl font-bold flex items-center gap-3 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95`}>
+                {/* 2. Button with New Tab logic */}
+                <button 
+                  onClick={() => openInNewTab(group.href)}
+                  className={`px-8 py-4 bg-gradient-to-r ${group.color} text-white rounded-2xl font-bold flex items-center gap-3 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95`}
+                >
                   Visit {group.name} <ArrowUpRight className="w-5 h-5" />
                 </button>
               </div>
