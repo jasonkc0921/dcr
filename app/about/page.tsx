@@ -15,6 +15,12 @@ export const metadata: Metadata = {
     siteName: "DCR Marketing",
     locale: "en_MY",
     type: "website",
+    images: [
+      {
+        url: "https://www.dcr.com.my/team_pic.jpeg",
+        alt: "DCR Marketing Team – Powering Loyalty Programs Since 2006",
+      },
+    ],
   },
 };
 

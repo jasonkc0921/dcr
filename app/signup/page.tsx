@@ -17,6 +17,12 @@ export const metadata: Metadata = {
     siteName: "DCR Marketing",
     locale: "en_MY",
     type: "website",
+    images: [
+      {
+        url: "https://www.dcr.com.my/DCR_Logo.png",
+        alt: "Sign Up to Become a DCR Marketing Merchant Partner",
+      },
+    ],
   },
 };
 
